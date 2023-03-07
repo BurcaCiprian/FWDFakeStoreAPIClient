@@ -79,9 +79,5 @@ class CartServiceTests: XCTestCase {
         XCTAssertNotNil(cart)
 
     }
-    
-    
-    private func generateMockProduct() -> Product {
-        return Product(id: 1, title: "Test Product", price: 9.99, description: "This is a test product.", category: "Test", image: "https://example.com/test-product.jpg")
-    }
+
 }

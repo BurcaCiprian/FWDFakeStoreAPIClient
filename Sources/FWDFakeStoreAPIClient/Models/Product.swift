@@ -19,4 +19,6 @@ public struct Product: Codable {
     let category: String?
     /// The image URL of the product
     let image: String?
+    /// The rating of the product.
+    let rating: Rating?
 }

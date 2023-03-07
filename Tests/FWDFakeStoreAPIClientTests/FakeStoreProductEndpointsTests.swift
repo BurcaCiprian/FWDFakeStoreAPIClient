@@ -119,28 +119,28 @@ final class FakeStoreProductEndpointsTests: XCTestCase {
     }
     
     func testAddNewProduct() throws {
-        let product = generateMockProduct()
+        let product = makeProduct()
         
         let endpoint = FakeStoreProductEndpoints.addNewProduct(product: product)
         
         XCTAssertEqual(endpoint.method, .post)
         XCTAssertEqual(endpoint.path, "/products")
         XCTAssertNil(endpoint.queryItems)
-        XCTAssertEqual(endpoint.body?.count, 6)
+        XCTAssertEqual(endpoint.body?.count, 7)
         XCTAssertEqual(endpoint.body?["title"] as? String, product.title)
         XCTAssertEqual(endpoint.body?["price"] as? Double, product.price)
     }
     
     func testUpdateProduct() throws {
         let productId = 1
-        let product = generateMockProduct()
+        let product = makeProduct()
         
         let endpoint = FakeStoreProductEndpoints.updateProduct(productId: productId, product: product)
         
         XCTAssertEqual(endpoint.method, .put)
         XCTAssertEqual(endpoint.path, "/products/\(productId)")
         XCTAssertNil(endpoint.queryItems)
-        XCTAssertEqual(endpoint.body?.count, 6)
+        XCTAssertEqual(endpoint.body?.count, 7)
         XCTAssertEqual(endpoint.body?["title"] as? String, product.title)
         XCTAssertEqual(endpoint.body?["price"] as? Double, product.price)
     }
@@ -170,7 +170,7 @@ private extension FakeStoreProductEndpointsTests {
         XCTAssertEqual(sut.body, nil)
     }
     
-    private func generateMockProduct() -> Product {
-        return Product(id: 1, title: "Test Product", price: 9.99, description: "This is a test product.", category: "Test", image: "https://example.com/test-product.jpg")
+    private func makeProduct() -> Product {
+        return Product(id: 1, title: "Test Product", price: 9.99, description: "This is a test product.", category: "Test", image: "https://example.com/test-product.jpg", rating: Rating(count: 3, rate: 2.0))
     }
 }

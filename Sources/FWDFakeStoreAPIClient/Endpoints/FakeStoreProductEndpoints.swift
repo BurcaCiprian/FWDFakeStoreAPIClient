@@ -25,6 +25,10 @@ enum FakeStoreProductEndpoints {
 
     /// Endpoint to delete a product with a given ID.
     case deleteProduct(productId: Int)
+    
+    case getAllCategories
+    
+    case getProductsInCategory(category: String, limit: Int?, sort: String?)
 }
 
 extension FakeStoreProductEndpoints: FakeStoreEndpointType {
@@ -41,6 +45,10 @@ extension FakeStoreProductEndpoints: FakeStoreEndpointType {
             return "/products/\(productId)"
         case .deleteProduct(let productId):
             return "/products/\(productId)"
+        case .getAllCategories:
+            return "/products/categories"
+        case .getProductsInCategory(category: let category, _, sort: _):
+            return "/products/category/\(category)"
         }
     }
     
@@ -54,6 +62,10 @@ extension FakeStoreProductEndpoints: FakeStoreEndpointType {
             return .put
         case .deleteProduct:
             return .delete
+        case .getAllCategories:
+            return .get
+        case .getProductsInCategory:
+            return .get
         }
     }
     
