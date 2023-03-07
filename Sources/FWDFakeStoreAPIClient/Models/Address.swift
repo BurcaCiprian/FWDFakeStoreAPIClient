@@ -6,15 +6,15 @@
 //
 
 /// Struct representing an address returned by the fakestore.com API
-struct Address: Codable {
-    /// The street address
-    let street: String
-    /// The city
-    let city: String
-    /// The state
-    let state: String
-    /// The ZIP code
-    let zip: String
-    /// The geographical coordinates of the address
-    let geo: GeoLocation
+public struct Address: Codable {
+    /// The geolocation of the address.
+    public let geolocation: GeoLocation
+    /// The city of the address.
+    public let city: String
+    /// The street of the address.
+    public let street: String
+    /// The number of the address.
+    public let number: Int
+    /// The zipcode of the address.
+    public let zipcode: String
 }

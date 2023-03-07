@@ -8,11 +8,22 @@
 import Foundation
 import FWDNetworkingLibrary
 
+/// An enum representing the available endpoints for the fake store product API.
 enum FakeStoreProductEndpoints {
+    
+    /// Endpoint to get all products with an optional limit and sort parameter.
     case getAllProducts(limit: Int?, sort: String?)
+
+    /// Endpoint to get a single product with a given ID.
     case getSingleProduct(productId: Int)
+
+    /// Endpoint to add a new product to the store.
     case addNewProduct(product: Product)
+
+    /// Endpoint to update an existing product with a given ID.
     case updateProduct(productId: Int, product: Product)
+
+    /// Endpoint to delete a product with a given ID.
     case deleteProduct(productId: Int)
 }
 

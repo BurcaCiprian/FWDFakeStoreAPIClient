@@ -6,7 +6,7 @@
 //
 
 /// Struct representing a company returned by the fakestore.com API
-struct Company: Codable {
+public struct Company: Codable {
     /// The name of the company
     let name: String
     /// The catchphrase of the company

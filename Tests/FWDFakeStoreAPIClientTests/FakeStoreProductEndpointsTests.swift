@@ -166,7 +166,7 @@ private extension FakeStoreProductEndpointsTests {
         XCTAssertEqual(sut.scheme, "https")
         XCTAssertEqual(sut.fragment, nil)
         XCTAssertEqual(sut.port, nil)
-        XCTAssertEqual(sut.host, "fakestore.com")
+        XCTAssertEqual(sut.host, "fakestoreapi.com")
         XCTAssertEqual(sut.body, nil)
     }
     

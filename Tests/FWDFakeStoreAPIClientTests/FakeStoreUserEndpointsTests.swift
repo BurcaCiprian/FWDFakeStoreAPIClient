@@ -89,7 +89,7 @@ class FakeStoreUserEndpointsTests: XCTestCase {
         XCTAssertNil(endpoint.queryItems)
         XCTAssertEqual(endpoint.headers, TestConstants.DEFAULT_HEADERS)
         XCTAssertNotNil(endpoint.body)
-        XCTAssertEqual(endpoint.body?.count, 7)
+        XCTAssertEqual(endpoint.body?.count, 8)
         XCTAssertEqual(endpoint.body?["username"] as? String, user.username)
     }
     
@@ -105,7 +105,7 @@ class FakeStoreUserEndpointsTests: XCTestCase {
         XCTAssertNil(endpoint.queryItems)
         XCTAssertEqual(endpoint.headers, TestConstants.DEFAULT_HEADERS)
         XCTAssertNotNil(endpoint.body)
-        XCTAssertEqual(endpoint.body?.count, 7)
+        XCTAssertEqual(endpoint.body?.count, 8)
         XCTAssertEqual(endpoint.body?["username"] as? String, user.username)
     }
     
@@ -125,8 +125,20 @@ class FakeStoreUserEndpointsTests: XCTestCase {
 
 extension FakeStoreUserEndpointsTests {
     private func generateMockUser() -> User {
-        let mockAddress = Address(street: "123 Main St", city: "Suite 1", state: "Testville", zip: "12345-6789", geo: GeoLocation(lat: "-37.3159", lng: "81.1496"))
-        let mockCompany = Company(name: "Test Company", catchPhrase: "Testing the limits", bs: "Just testing")
-        return User(id: 1, username: "testuser", email: "testuser@example.com", address: mockAddress, phone: "555-1234", website: "example.com", company: mockCompany)
+        
+        let companyMock = Company(
+            name: "Acme Inc.",
+            catchPhrase: "The best company around",
+            bs: "Making the world a better place"
+        )
+        
+        let geoLocationMock = GeoLocation(lat: "37.7749", long: "-122.4194")
+        
+        let addressMock = Address(geolocation: geoLocationMock, city: "Brasov", street: "Some street", number: 54, zipcode: "123123")
+        
+        let mockName = User.Name(firstname: "John", lastname: "Doe")
+        
+        let mockUser = User(id: 1, username: "username", email: "username@gmail.com", address: addressMock, phone: "123123", website: "www.google.com", company: companyMock, name: mockName)
+        return mockUser
     }
 }

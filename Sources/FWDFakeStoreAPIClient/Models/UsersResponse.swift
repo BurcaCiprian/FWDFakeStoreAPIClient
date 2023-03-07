@@ -6,7 +6,7 @@
 //
 
 /// Struct representing a list of users returned by the fakestore.com API
-struct UsersResponse: Codable {
+public struct UsersResponse: Codable {
     /// An array of users
     let users: [User]
 }

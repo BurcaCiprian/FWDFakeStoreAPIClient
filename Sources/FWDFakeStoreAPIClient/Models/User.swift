@@ -6,19 +6,29 @@
 //
 
 /// Struct representing a user returned by the fakestore.com API
-struct User: Codable {
+public struct User: Codable {
     /// The ID of the user
-    let id: Int
+    public let id: Int
     /// The username of the user
-    let username: String
+    public let username: String?
     /// The email address of the user
-    let email: String
+    public let email: String?
     /// The user's address
-    let address: Address
+    public let address: Address?
     /// The user's phone number
-    let phone: String
+    public let phone: String?
     /// The user's website
-    let website: String
+    public let website: String?
     /// The user's company
-    let company: Company
+    public let company: Company?
+    
+    /// The user's name
+    public let name: Name?
+    
+    public struct Name: Codable {
+        /// The user's first name
+        public let firstname: String?
+        /// The user's last name
+        public let lastname: String?
+    }
 }

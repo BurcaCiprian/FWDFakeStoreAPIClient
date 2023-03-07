@@ -12,14 +12,14 @@ import XCTest
 
 final class FakeStoreCartEndpointsTests: XCTestCase {
     // MARK: - Test Cases
-    func testGetAllCartsEndpoint() {
+    func testGetAllUserCartsEndpoint() {
         // given
         let limit = 10
         let sort = "desc"
-        let endpoint = FakeStoreCartEndpoints.getAllCarts(limit: limit, sort: sort)
+        let endpoint = FakeStoreCartEndpoints.getUserCarts(userId: 1, limit: limit, sort: sort)
         
         // when
-        let expectedPath = "/carts"
+        let expectedPath = "/carts/user/1"
         let expectedMethod = endpoint.method
         let expectedQueryItems = ["limit": "\(limit)", "sort": sort]
         let expectedHeaders = TestConstants.DEFAULT_HEADERS
@@ -37,10 +37,10 @@ final class FakeStoreCartEndpointsTests: XCTestCase {
     func testGetAllCartsEndpointNoLimit() {
         // given
         let sort = "desc"
-        let endpoint = FakeStoreCartEndpoints.getAllCarts(limit: nil, sort: sort)
+        let endpoint = FakeStoreCartEndpoints.getUserCarts(userId: 1, limit: nil, sort: sort)
         
         // when
-        let expectedPath = "/carts"
+        let expectedPath = "/carts/user/1"
         let expectedMethod = endpoint.method
         let expectedQueryItems = ["sort": sort]
         let expectedHeaders = TestConstants.DEFAULT_HEADERS
@@ -57,10 +57,10 @@ final class FakeStoreCartEndpointsTests: XCTestCase {
     func testGetAllCartsEndpointNoSort() {
         // given
         let limit = 20
-        let endpoint = FakeStoreCartEndpoints.getAllCarts(limit: limit, sort: nil)
+        let endpoint = FakeStoreCartEndpoints.getUserCarts(userId: 1, limit: limit, sort: nil)
                 
         // when
-        let expectedPath = "/carts"
+        let expectedPath = "/carts/user/1"
         let expectedMethod = endpoint.method
         let expectedHeaders = TestConstants.DEFAULT_HEADERS
         let expectedBody: [String: Any]? = nil
@@ -75,10 +75,10 @@ final class FakeStoreCartEndpointsTests: XCTestCase {
     
     func testGetAllCartsEndpointNoQueryItems() {
         // given
-        let endpoint = FakeStoreCartEndpoints.getAllCarts(limit: nil, sort: nil)
+        let endpoint = FakeStoreCartEndpoints.getUserCarts(userId: 1, limit: nil, sort: nil)
                 
         // when
-        let expectedPath = "/carts"
+        let expectedPath = "/carts/user/1"
         let expectedMethod = endpoint.method
         let expectedHeaders = TestConstants.DEFAULT_HEADERS
         let expectedBody: [String: Any]? = nil
@@ -113,7 +113,7 @@ final class FakeStoreCartEndpointsTests: XCTestCase {
     
     func testAddNewCartEndpoint() {
         // given
-        let newCart = Cart(id: "1", date: "2022-03-01", userId: 1, products: [])
+        let newCart = Cart(id: 1, date: "2022-03-01", userId: 1, products: [])
         let endpoint = FakeStoreCartEndpoints.addNewCart(cart: newCart)
         
         // when
@@ -134,7 +134,7 @@ final class FakeStoreCartEndpointsTests: XCTestCase {
     func testUpdateCartEndpoint() {
         // given
         let cartId = 1
-        let updatedCart = Cart(id: "1", date: "2022-03-01", userId: 1, products: [])
+        let updatedCart = Cart(id: 1, date: "2022-03-01", userId: 1, products: [])
         let endpoint = FakeStoreCartEndpoints.updateCart(cartId: cartId, cart: updatedCart)
         
         // when
@@ -171,6 +171,6 @@ private extension FakeStoreCartEndpointsTests {
         XCTAssertEqual(sut.scheme, "https")
         XCTAssertEqual(sut.fragment, nil)
         XCTAssertEqual(sut.port, nil)
-        XCTAssertEqual(sut.host, "fakestore.com")
+        XCTAssertEqual(sut.host, "fakestoreapi.com")
     }
 }

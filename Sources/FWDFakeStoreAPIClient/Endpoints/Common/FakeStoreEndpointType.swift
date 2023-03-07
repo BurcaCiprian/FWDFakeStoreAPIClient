@@ -31,7 +31,7 @@ public extension FakeStoreEndpointType {
     }
     
     var host: String {
-        return "fakestore.com"
+        return "fakestoreapi.com"
     }
     
     var body: [String : String]? {
